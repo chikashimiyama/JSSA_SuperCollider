@@ -1,0 +1,449 @@
+% 先端芸術音楽創作学会会報テンプレート ver.200908
+% By Daichi Ando
+% based on ICMC2005
+
+\documentclass{jsarticle}
+\renewcommand{\baselinestretch}{0.9}
+\usepackage{jssa,amsmath}
+\usepackage{graphics}
+\usepackage{plext}
+\usepackage{color}
+\usepackage{listings,jlisting}
+\usepackage{url}
+\usepackage{ascmac}
+ \usepackage{setspace}
+
+\lstset{%
+ language={C},
+ basicstyle={\small},%
+ backgroundcolor={\color[gray]{.95}},%
+ identifierstyle={\small},%
+ commentstyle={\small\itshape},%
+ keywordstyle={\small\bfseries},%
+ ndkeywordstyle={\small},%
+ stringstyle={\small\ttfamily},
+ frame={l},
+ breaklines=true,
+ columns=[l]{fullflexible},%
+ numbers=left,%
+ tabsize=3,%
+ xrightmargin=0zw,%
+ xleftmargin=0zw,%
+ numberstyle={\scriptsize},%
+ stepnumber=1,
+ numbersep=1zw,%
+ lineskip=-0.5ex%
+}
+\
+\def\boutenchar{・}
+
+% Title.
+% ------
+% LaTeX環境によっては，maketitleでエラーが出ることもあるが，強行して良い
+
+\title{SuperCollider チュートリアル (1) \\ SuperCollider Tutorials (1)}
+
+% Paper Category 論文，報告，連載，書評……など
+\category{連載}
+
+% Single address
+% To use with only one author or several with the same address
+% ---------------
+\oneauthor
+ {美山 千香士 \\ Chikashi Miyama} 
+ {ケルン音楽舞踏大学\\Hochschule f\"{u}r Musik und Tanz K\"{o}ln}
+
+% Two addresses
+% --------------
+%\twoauthors
+%  {First author} {School \\ Department}
+%  {Second author} {Company \\ Address}
+
+% Three addresses
+% --------------
+%\threeauthors
+%  {First author} {School \\ Department}
+%  {Second author} {Company \\ Address}
+%  {Third author} {Company \\ Address}
+
+\begin{document}
+%
+%%% --ページ数等の指定
+\makeatletter 
+\def\ps@myheadings{% 
+\let\ps@jpl@in\ps@plain% 
+\def\@evenhead{\reset@font\hfil\leftmark\hfil}% 
+\def\@oddhead{\reset@font\hfil\rightmark\hfil}% 
+\let\@mkboth\@gobbletwo% 
+\let\sectionmark\@gobble% 
+\let\subsectionmark\@gobble% 
+% 
+\def\@oddfoot{\reset@font\hfil-- \thepage --\hfil}% 
+\let\@evenfoot\@oddfoot 
+} 
+\makeatother 
+
+%%% 
+%%% 開始ページ数を設定する 
+%投稿の段階では無視
+
+\setcounter{page}{ 9 } 
+\pagestyle{myheadings} 
+
+
+%%% 
+%%% 論文のVol., No., pp.を設定する 
+% 投稿の段階では無視
+
+\markright{\footnotesize \gt 先端芸術音楽創作学会 会報 Vol.16 No.1 pp.9--16 }
+
+%%% 
+%%% \maketitleの直後の行に \thispagestyle{myheadings} を挿入する。 
+
+\maketitle
+\thispagestyle{myheadings}
+\begin{abstract}
+　本連載では、リアルタイム音響合成環境のSuperCollider(SC)の使い方を、同ソフトを作品創作や研究のために利用しようと考えている音楽家、メディア・アーティストを対象にチュートリアル形式で紹介する。
+\\　SuperCollider(SC) is a realtime programming environment for audio synthesis. This article introduces SC to musicians and media artists who are planning to utilize the software for their artistic creations and researches.
+\end{abstract}
+
+\section{SuperColliderとは}
+\subsection{概要}
+{\bf SuperCollider(SC)}はJames McCartneyによって開発が始められた、リアルタイム音響合成とアルゴリズム作曲のためのプログラミング環境である。当初は有償ソフトウェアとして販売されていたが、2002年よりGNU General Public License(GPL)に基づくフリーソフトとなり、現在は有志により開発が進められている。
+
+\subsection{特徴}
+\subsubsection{テキストベースのオブジェクト指向言語}
+SCでは、MaxやPd等のGUIを用いた音響合成プログラミング環境と異なり、{\bf SC Language}という専用の言語を用いてテキストベースでプログラミングを行う。SC LanguageはSmalltalkを基調とするインタプリタ型オブジェクト指向プログラミング(OOP)言語であるため、OOP言語に精通したユーザーはカプセル化、継承、多態性などのOOPのプログラミング技法を利用してSCでの音響合成プログラムを行う事ができる。
+
+\subsubsection{マルチ・プラットフォーム}
+SCはMac、Windows、Linux、FreeBSDで動作するマルチ・プラットフォームなソフトウェアであるため、様々な環境で柔軟に運用する事ができる。特に、最近注目が高まっている、Raspberry Pi\cite{rasppi}(図\ref{fig:rasppi}])など安価なシングルボード・コンピュータ上でもSCは稼働するため、音を自動生成するプログラムを基調としたサウンド・インスタレーションや組み込み分野での活用も期待されている。
+
+\begin{figure}[htbp]
+ \begin{center}
+  \includegraphics[scale=0.2]{rasppi}
+ \end{center}
+ \caption{Raspberry Pi}
+ \label{fig:rasppi}
+\end{figure}
+
+\subsubsection{クライアント・サーバーモデル}
+SCは実際に音を生成する{\bf scsynth}と、音生成のための命令の送信やイベント処理等を行う{\bf sclang}という自律的な2つのソフトウェアから構成されており、この2つのソフトウェアはクライアント・サーバーモデルを形成している(図\ref{fig:server_client})。
+
+\begin{figure}[htbp]
+ \begin{center}
+  \includegraphics[scale=0.7]{server_client}
+ \end{center}
+ \caption{クライアント・サーバーモデル}
+ \label{fig:server_client}
+\end{figure}
+
+scsynthとsclangはCNMATの開発した{\bf Open Sound Control(OSC)}\cite{osc}というプロトコル用いて通信を行うため、複数のsclangからscsynthをコントロールすること、また、sclangの代わりにOSCを送信できるソフトウェアをクライアントとして用いる事も可能で、例えばMaxやPdからscsynthにOSCメッセージを送り、音の生成を促す事も可能である(図\ref{fig:other_clients})。サーバーとクライアントは両方同じマシンでも、ネットワークで繋がった別々のマシンでも稼働させる事ができる。
+
+\begin{figure}[htbp]
+ \begin{center}
+  \includegraphics[scale=0.7]{other_clients}
+ \end{center}
+ \caption{scsynthは様々なクライアントから制御可能}
+ \label{fig:other_clients}
+\end{figure}
+
+\subsection{動作確認環境}
+当記事掲載のソースコードはMac版のSC3.6.5を使って動作確認を行っている。また、操作は基本的にMac版のSCについてのみ解説する。Win版、Linux版のSCを使っている場合は、若干操作が異なる可能性があるので留意されたい。
+
+\subsection{情報元}
+本連載以外に自主的にSCを学ぼうというユーザーのために、以下、SCに関する情報源を紹介する。SCの日本語の情報は現在のところまだ潤沢とは言い難いが、英語のものは充実してきている。
+
+\subsubsection{ヘルプ・ファイル}
+SCのヘルプ・ファイルはかなり綿密に情報が記載されており、これをあたる事で大体の疑問が解決される。各ヘルプに実行可能なコードが複数紹介されているので、音を出しながら仕組みを理解していく事ができる。また、ヘルプ・ブラウザ（後述）のサブメニュー、「Browse」タグをクリックすると、テーマごとにドキュメントがリストされるので、ここから「Tutorials」を選ぶと「Getting-Started」や「Mark\_Polishook\_tutorial」といったチュートリアルを見つける事ができる。これらをひと通り勉強することでSCの基本的なしくみを理解することが可能である。
+
+\subsubsection{The SuperCollider Book}
+MIT Pressから出版されているThe SuperCollider Book\cite{scbook}はSCのバイブル的書籍であるが、この本は多くの著者がSCに関する様々なテーマについて執筆したものをまとめたもので、初心者がステップ・バイ・ステップでSCを習得するのに適しているとは言い難い。むしろ中級者以上がさらなるSCの活用法を学ぶのに適した本といえる。
+
+\subsubsection{SuperCollider Japan}
+日本のSuperColliderのポータルサイト\cite{scjapan}。tn8氏とumbrella\_process氏によって運営されている。SCに関する最新のニュースが日本語で読める他、日本語のwikiやフォーラムもあり、上級者にSCに関する質問をする事もできる。また、SCのワークショップの情報なども掲載されている。
+
+\section{ダウンロードとインストール}
+
+\subsection{ダウンロード}
+SCは現在sourceforge.netにホストされている。\\
+\url{http://supercollider.sourceforge.net}\\
+にアクセスし、「Download SuperCollider for Mac, Linux, or Windows」のリンクをクリックし、自分の環境にあったものをダウンロードする。\subsection{インストール}
+Macの場合は、ダウンロードが完了すると「ダウンロード」フォルダの中に「SuperCollider-3.6.5-OSX-universal.dmg」というディスクイメージができるので、これをダブルクリックし展開する。
+\begin{figure}[htbp]
+ \begin{center}
+  \includegraphics[scale=0.32]{installation}
+ \end{center}
+ \caption{アプリケーションフォルダにドラッグ}
+ \label{fig:installation}
+\end{figure}
+すると、図\ref{fig:installation}のようなウインドウが表示されるので、単純にSuperColliderのフォルダをアプリケーションフォルダにドラッグする。これでインストールは完了である。
+
+\section{音を出すには}
+\subsection{アプリケーションの起動}
+アプリケーションフォルダ内のSuperColliderフォルダの中に「SuperCollider」というアプリケーションがあるので、そのアイコンをダブルクリックするとアプリケーションが立ち上がり、図\ref{fig:sc_ide}のような画面が表示される。
+
+\begin{figure}[htbp]
+ \begin{center}
+  \includegraphics[scale=0.225]{sc_ide}
+ \end{center}
+ \caption{SCのウインドウ}
+ \label{fig:sc_ide}
+\end{figure}
+
+SCのウインドウはデフォルトで4つの部分から構成されており、左部分が実際にコードを書いていく、{\bf コード・エディタ}、右上がヘルプを表示する{\bf ヘルプ・ブラウザ}、右下がエラーやメッセージを表示する{\bf ポスト・ウインドウ}、そして最下部が現在のSCの状態を表示する{\bf ステータス・バー}と呼ばれる。
+
+\subsection{正弦波を鳴らす}
+
+それでは、手始めに440 Hzの正弦波を鳴らすコードをプログラムし、実行してみる。
+
+\subsubsection{コーディング}
+まず、以下のコードをウインドウ左部のコード・エディタにそのまま書き写す。
+
+\begin{lstlisting}[caption=正弦波,label=code:sin]
+{
+	SinOsc.ar;
+}.play
+\end{lstlisting}
+
+\subsubsection{サーバーの立ち上げ}
+コードを書き終わったら、サーバー(scsynth)を立ち上げる。
+サーバーを起動するには、メニューの「Language」から「Boot Server」を選ぶ（ショートカットは[Cmd+B]）。サーバーが立ち上がる前は図\ref{fig:server}上のように、ステータス・バーの「Server:」の項が白だが、立ち上がると図\ref{fig:server}下のように緑色になる。
+
+\begin{figure}[htbp]
+ \begin{center}
+  \includegraphics[scale=0.5]{server}
+ \end{center}
+ \caption{SCサーバーのステータス}
+ \label{fig:server}
+\end{figure}
+
+\subsubsection{コードの実行}
+サーバーが起動したらいよいよコードを実行する。[Cmd+A]でコードの全体を選択し、[Cmd+Return]を押すと、440 Hzの正弦波がコンピュータのスピーカーから聞こえるはずである。もし、聞こえてこない場合は以下の点をチェックする。
+\begin{itemize}
+ \item コンピュータのスピーカーのボリュームは上がっているか、ミュートされてないか
+ \item オーディオ・インターフェースなど音に関連した外部装置が繋がっていないか
+ \item サーバーが正常に稼働しており、ステータスが緑色に表示されているか
+\end{itemize}
+
+\subsubsection{音を止める}
+上記のコードで生成される正弦波は自動的には止まらない。これを強制的に停止させるには「Language」メニュから「Stop」を選ぶか、そのショートカットの[Cmd+.]を入力する。
+{\bf SinOsc}はその名の通り、正弦波のオシレータであり、デフォルトで440 Hzの正弦波を生成する。このようにSCには音を生成するSinOscのような「部品」が沢山用意されており、基本的にこれらの「部品」を組み合わせて音作りを行う。SCではこの「部品」の事を{\bf Unit Generator}、略して{\bf UGen}という。SCにおいて、SinOscのように音を生成するだけでなく、分析したり、加工したりする役割を持つ「部品」は全てUGenである。UGenを実際に使うには、UGenの名前の後に{\bf .ar}か{\bf .kr}を付加する必要がある。.arを付加した場合、{\bf オーディオ・レートで}、.krで作った場合{\bf コントロール・レート}でそのUGenは動作する。コントロール・レートで動作するUGenからの出力は音として聞くことは出来ないが、その出力を利用してオーディオ・レートで動作する他のUGenのパラメータをコントロールする事が可能である。また、コントロール・レートのUGenは信号の出力頻度がオーディオ・レートのUGenに比べ低いため、CPU負荷が軽い。
+
+\subsection{周波数、振幅の操作}
+
+SinOsc.arはデフォルトで440 Hzの正弦波を生成するが、この周波数を変更するにはソースコード\ref{code:freq}のようにSinOsc.arの後にカッコを付け SinOsc.ar(880) のように書く。
+
+\begin{lstlisting}[caption=周波数の変更,label=code:freq]
+{
+	SinOsc.ar(880);
+}.play
+\end{lstlisting}
+
+これで先ほどの音より1オクターブ高い880 Hzの音が生成されるようになる。この「880」という数値のように括弧の中に書いて出力を変化させるものを{\bf 引数(arguments)}という。引数の値がそのUGenにどのように作用するのかは、ヘルプ・ファイルを見て確認する必要がある。
+
+\begin{figure}[htb]
+ \begin{center}
+  \includegraphics[scale=0.5]{help}
+ \end{center}
+ \caption{ヘルプ・ファイルを見る}
+ \label{fig:help}
+\end{figure}
+
+ヘルプ・ファイルを開く方法は図\ref{fig:help}のように、まずヘルプ・ファイルを見たいUGenを選択し、「Help」メニューから「Look Up Documentation for Cursor」を選択するか、そのショートカットの[Cmd+D]を入力する。するとヘルプ・ブラウザにそのUGenに関するヘルプ・ファイルが表示される。
+
+\begin{figure}[htb]
+ \begin{center}
+  \includegraphics[scale=0.27]{arguments}
+ \end{center}
+ \caption{ヘルプ・ファイルで引数をチェックする}
+ \label{fig:arguments}
+\end{figure}
+
+ヘルプ・ファイルのClass Methodsの項目に図\ref{fig:arguments}のように.arや.krの後にどのような引数を書くことができるのかが説明されている。このヘルプ・ファイルによると、SinOscは最大4つまでの引数を取ることができ、それぞれオシレータのパラメータ、{\it freq}、{\it phase}、{\it mul}、{\it add}を設定しているのが分かる。各引数には初期値が設定されており、引数を書かなかった場合はその初期値が用いられる。ソースコード\ref{code:sin}では、全ての引数が書かれていないので、{\it freq}の初期値である440が用いられた。そのため、440 Hz、つまり「ピアノの真ん中のラ」(A4)の音が生成された。
+また、この正弦波の音を小さくするには、1より少ない数をSinOsc.arの第3引数、{\it mul}に指定し、乗算を行えば良い。例えば0.1を指定すると正弦版の出力に0.1が乗算され、正弦波の振幅が1/10になり、音の聞こえも静かなものになる。
+
+\begin{lstlisting}[caption=振幅を小さくする,label=code:amp]
+{
+	SinOsc.ar(880, 0, 0.1);
+}.play
+\end{lstlisting}
+
+\begin{itembox}[l]{SinOsc}
+\begin{spacing}{0.6}
+{\footnotesize 
+正弦波を生成するオシレータ。\\\\
+.ar({\it freq}, {\it phase}, {\it mul}, {\it add})\\
+.kr({\it freq}, {\it phase}, {\it mul}, {\it add})\\\\
+{\it freq} $\cdots$周波数を Hzで指定\\
+{\it phase} $\cdots$位相をラジアンで指定\\
+{\it mul} $\cdots$出力値にこの値を掛ける\\
+{\it add} $\cdots$出力値にこの値を足す
+}
+\end{spacing}
+\end{itembox}
+
+\subsection{波形の可視化}
+\begin{figure}[htb]
+ \begin{center}
+  \includegraphics[scale=0.32]{scope}
+ \end{center}
+ \caption{波形を可視化する}
+ \label{fig:scope}
+\end{figure}
+
+今までのコードではコードの最後に.playが書かれていたが、この代わりに.scopeを使うと、図\ref{fig:scope}のように音の生成と同時に波形を表示させる事が可能である。
+
+\begin{lstlisting}[caption=波形の可視化,label=code:scope]
+{
+	SinOsc.ar(880, 0, 0.1);
+}.scope
+\end{lstlisting}
+
+\subsection{グリッサンドを作る}
+
+これまでのプログラムは周波数や振幅が定数によって固定されていたが、{\bf Line}を用いると、周波数などのパラメータを一定時間をかけて徐々に変化させることが可能となる。例えばソースコード\ref{code:gliss}を実行すると、440 Hzから880 Hzまで10秒かけて周波数が上昇するので、グリッサンドを作る事ができる。
+
+\begin{lstlisting}[caption=グリッサンド,label=code:gliss]
+{
+	SinOsc.ar(Line.kr(440, 880, 10), 0, 0.1);
+}.scope
+\end{lstlisting}
+
+ここで用いられているLineは.arではなく.krである、このようにパラメータを操作するためのUGenにはコントロール・レートの.krを使う事が可能である(.arの使用も可)。
+
+\begin{itembox}[l]{Line}
+\begin{spacing}{0.6}
+{\footnotesize
+ライン・ジェネレータ。初期値から目的値に所要時間をかけて徐々に値を変化させる。\\\\
+.ar({\it start}, {\it end}, {\it dur}, {\it mul}, {\it add}, {\it doneAction})\\
+.kr({\it start}, {\it end}, {\it dur}, {\it mul}, {\it add}, {\it doneAction})\\\\
+{\it start} $\cdots$ 初期値\\
+{\it end} $\cdots$ 目的値\\
+{\it dur} $\cdots$ 所要時間\\
+{\it mul} $\cdots$ 出力値にこの値を掛ける\\
+{\it add} $\cdots$ 出力値にこの値を足す\\
+{\it doneAction} $\cdots$ 所要時間が経過した時に行う処理を指定
+}
+\end{spacing}
+\end{itembox}
+
+\subsection{クレッシェンドを作る}
+Lineの出力を周波数に適用すれば、グリッサンドが作れるが、これを振幅に適応すればソースコード\ref{code:cresc}のようにクレッシェンドを作る事も可能である。
+
+\begin{lstlisting}[caption=クレッシェンド,label=code:cresc]
+{
+	SinOsc.ar(880, 0, Line.kr(0, 1, 10));
+}.scope
+\end{lstlisting}
+
+\subsection{マウスでパラメータをコントロールしてみる}
+
+さらにSinOscの引数はマウスでリアルタイムにコントロールする事も可能である。
+
+\begin{lstlisting}[caption=マウスによるコントロール,label=code:mouse]
+{
+	SinOsc.ar(MouseX.kr(440, 880), 0, 0.1);
+}.scope
+\end{lstlisting}
+
+ソースコード\ref{code:mouse}で使われている{\bf MouseX}は、マウスの現在のX座標を引数で指定した範囲にスケーリングして出力するので、マウスカーソルを画面左端に配置すると440 Hzの正弦波、右端に配置すると880 Hzの正弦波が生成され、左右に動かすとそれにともなって正弦波の周波数が変化する。
+
+\begin{itembox}[l]{MouseX, MouseY}
+\begin{spacing}{0.6}
+
+{\footnotesize
+マウスカーソルのX,Y軸上の位置をスケーリングして出力。\\\\
+.kr({\it minival}, {\it maxval}, {\it warp}, {\it lag})\\\\
+{\it minival} $\cdots$ 最小値\\
+{\it maxval} $\cdots$ 最大値\\
+{\it warp} $\cdots$ 最小・最大値間補間方法。0で線形、1で指数補間\\
+{\it lag} $\cdots$ ラグ要素、多いほど値の出力が滑らになる
+}
+\end{spacing}
+\end{itembox}
+
+\subsection{他のオシレータを使ってみる}
+SCには予め、SinOscの他にも様々な種類のオシレータが含まれている。ソースコード\ref{code:saw}、\ref{code:rect}、\ref{code:tri}はそれぞれ鋸歯状（ノコギリ）波、矩形波、三角波のオシレータによる音の生成を行なっている。
+
+\begin{lstlisting}[caption=鋸歯状波,label=code:saw]
+{
+	Saw.ar(880);
+}.scope
+\end{lstlisting}
+
+\begin{lstlisting}[caption=矩形波,label=code:rect]
+{
+	Pulse.ar(880);
+}.scope
+\end{lstlisting}
+
+\begin{lstlisting}[caption=三角波,label=code:tri]
+{
+	LFTri.ar(880);
+}.scope
+\end{lstlisting}
+
+SCにはこの他にも様々なオシレータがある。ひと通りオシレータの音を聞いてみたい場合は、ヘルプ・ブラウザの上方にあるタブ、「search」を選び「Tour of UGens」というキーワードでファイルを検索すると「Tour of UGens」というファイルが見つかる。このファイルには、SCで使える主要なオシレータが羅列されているので各オシレータの音を順番に試す事ができる。\\
+
+\section{複数の音を同時に出す}
+\subsection{UGenの出力を足す}
+複数の音を同時に出すには単純に2つ以上のUGenの出力を足す。ソースコード\ref{code:two_sins}では400 Hzと500 Hzの正弦波を同時に聞くことができる。
+\begin{lstlisting}[caption=複数の音を同時に鳴らす,label=code:two_sins]
+{
+	SinOsc.ar(400, 0, 0.1) + SinOsc.ar(500, 0, 0.1);
+}.scope
+\end{lstlisting}
+\subsection{変数を使う}
+UGenの出力を直接足す他にも、出力を一度aやbなどの{\bf 変数}に代入し、後に足す事もできる。変数はアルファベット１文字の小文字の場合は事前に宣言する必要はない。ソースコード\ref{code:vari}の例では、400 Hzの正弦波を変数aに、500 Hzにの正弦波を変数bに代入し、4行目でaとbの加算を行っているため、ソースコード\ref{code:two_sins}のプログラムと同じ結果が得られる。
+
+\begin{lstlisting}[caption=変数の利用,label=code:vari]
+{
+	a = SinOsc.ar(400, 0, 0.1);
+	b = SinOsc.ar(500, 0, 0.1);
+	a + b;
+}.scope
+\end{lstlisting}
+
+SCは\{\}内の最後の行に書かれている音を評価、生成する。例えば、ソースコード\ref{code:last_line}のようにもし最後の行にa+bの代わりに、bのみを書いた場合、その前にaとbを足していたとしてもb、つまり500Hzの正弦波しか聞こえない。
+
+\begin{lstlisting}[caption=最後の行にbを置く,label=code:last_line]
+{
+	a = SinOsc.ar(400, 0, 0.1);
+	b = SinOsc.ar(500, 0, 0.1);
+	a + b;
+	b;
+}.scope
+
+\end{lstlisting}
+\subsection{長三和音を作る}
+現在まで音の高さは全て周波数によって指定してきたが、ある数値に対して.midicpsを付加すると、SCはその数値をMIDI ノート・ナンバーとして解釈し、周波数に変換する。故に、MIDI ノート・ナンバーを用いて12音平均律をでピッチを指定する事も可能である。例えば、ソースコード\ref{code:midicps}を実行すると220 Hzの正弦波が聞こえてくるが、これは、57がMIDIノートナンバーでA3(ピアノの真ん中のラより１オクターブ低いラ)であり、それが.midicpsで周波数値=220に変換されているためである。
+\begin{lstlisting}[caption=.midicps,label=code:midicps]
+{
+	SinOsc.ar(57.midicps, 0, 0.1);
+}.scope
+\end{lstlisting}
+
+これを利用し、C4の60、E4の64、G4の67にそれぞれ.midicpsを送り、周波数値に変換し、3つのオシレータに引数として渡し、出力される信号を全て加算すると、長三和音を作る事ができる。
+
+\begin{lstlisting}[caption=長三和音,label=code:major_chord]
+{
+	a = SinOsc.ar(60.midicps, 0, 0.1);
+	b = SinOsc.ar(64.midicps, 0, 0.1);
+	c = SinOsc.ar(67.midicps, 0, 0.1);	
+	a + b + c;
+}.scope
+\end{lstlisting}
+
+\bibliographystyle{jplain}
+\begin{thebibliography}{citations}
+	\bibitem{rasppi} {\it Raspberry Pi }, \url{http://www.raspberrypi.org }(アクセス日 2013年6月3日)
+	\bibitem{osc} Wright, M. and Freed, A. ``Open Sound Control: A New Protocol for Communicating with Sound Synthesizer'' {\it ICMC 1997 プロシーディングス} pp.101-104, 1997
+	\bibitem{scbook} Wilson, S., Cottle, D. and Collins, N. (eds), {\it The SuperCollider Book} The MIT Press, 2011
+	\bibitem{scjapan} {\it SuperCollider Japan }, \url{http://supercollider.jp }(アクセス日 2013年6月3日)	
+\end{thebibliography}
+
+\section{著者プロフィール}
+\subsection*{美山千香士(Chikashi Miyama)}
+作曲家、電子楽器創作家、映像作家、パフォーマー。国立音楽大学音楽デザイン学科より学士・修士を、スイス・バーゼル音楽アカデミーよりナッハ・ディプロムを、アメリカ・ニューヨーク州立バッファロー大学から博士号を取得。Prix Destellos特別賞、ASCAP/SEAMUS委嘱コンクール２位、ニューヨーク州立大学学府総長賞、国際コンピュータ音楽協会賞を受賞。2004年より作品と論文が国際コンピュータ音楽会議に12回入選、現在までに世界18カ国で作品発表を行っている。 2011年、DAAD(ドイツ学術交流会)から研究奨学金を授与され、ドイツ・カールスルーエのZKMで客員芸術家として創作活動に従事。近著に「Pure Data-チュートリアル＆リファレンス」(Works Corporation 社)がある。現在ドイツ・ケルン音楽舞踏大学電子音楽スタジオ非常勤講師。 
+\url{http://chikashi.net}
+\end{document}
