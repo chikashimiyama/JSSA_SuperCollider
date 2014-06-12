@@ -338,8 +338,8 @@ BPFの三番目の引数はrq(reciprocal of Q)値であり、この値が少な�
 }
 \end{itembox}
 
-\section{エフェクタを組み合わせる}
-SC3ではこれまでに制作してきたエフェクターを組み合わせる事も可能である。リスト\ref{code:combination}ではディストーション・ディレイ・リバーブを連結して、より複雑なエフェクトを実装し、それを「myEffect」というSynthDefとして定義している。
+\section{自作エフェクタをSynthDefとしての定義する}
+SC3ではこれまでに制作してきたエフェクターを組み合わせ、SynthDefとして定義することも可能である。リスト\ref{code:combination}ではディストーション・ディレイ・リバーブを連結して、より複雑なエフェクトを実装し、それを「myEffect」というSynthDefとして定義している。これにより、複数の作品で気に入ったエフェクタを再利用する事が用意となる。
 
 \begin{lstlisting}[caption=エフェクトの組み合わせ, label=code:combination]
 SynthDef("myEffect",{
@@ -355,8 +355,8 @@ Synth("myEffect")
 
 
 \section{まとめ}
-今回はSCによる様々なエフェクトのプログラミングを学習した。エフェクタは、さらにSCのバス(Bus)と言われる機能を利用して、エフェクタのSynthを複数繋ぐ、音を生成するSynthとエフェクタを定義したSynthを繋いで、自作シンセ音に各種エフェクトを
-適応するという事も可能である。このバス機能については、また回を改めて紹介する。
+今回はSCによる様々なエフェクトのプログラミングを学習した。エフェクタは、さらにSCのバス(Bus)と言われる機能を利用して、エフェクタのSynthを複数繋ぐ、音を生成するSynthとエフェクタを定義したSynthを組み合わせて、自作シンセ音に各種エフェクトを
+適応するという等、様々な応用が可能である。このバス機能については、また回を改めて紹介する。
 
 \bibliographystyle{jplain}
 \begin{thebibliography}{citations}
