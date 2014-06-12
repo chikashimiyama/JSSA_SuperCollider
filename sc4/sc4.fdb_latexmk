@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1402566220 "sc4.dvi" "sc4.pdf" "sc4" 1402566221
-  "sc4.dvi" 1402566220 46848 4cc87b43cb4974ba43ce56e9e4f24c40 "latex"
+["dvipdf"] 1402581679 "sc4.dvi" "sc4.pdf" "sc4" 1402581681
+  "sc4.dvi" 1402581679 49428 063e9d76496a1e1f7a9c93d1e4c2d1c2 "latex"
   (generated)
   "sc4.pdf"
-["latex"] 1402566219 "sc4.tex" "sc4.dvi" "sc4" 1402566221
+["latex"] 1402581678 "sc4.tex" "sc4.dvi" "sc4" 1402581681
   "/usr/local/texlive/2013/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/helvetic/phvr7t.tfm" 1136768653 2520 53e01eef820ca829e42c1333c3fd02b9 ""
@@ -66,8 +66,8 @@
   "jlisting.sty" 1370277287 6230 9fa8fe97d5afbd5a433990256cc4d5a3 ""
   "jssa.sty" 1342522678 4466 0fcec90f93d9013a18b2105cdbafac94 ""
   "mediabb.sty" 1349314587 3255 45a4677a69a70933c927944771bd341e ""
-  "sc4.aux" 1402566220 3534 4d9e227e45cba8ff3bf6fcc93d892442 ""
-  "sc4.tex" 1402566218 18659 f8e98ea0d14a57e4a4150c1a1a21bd75 ""
+  "sc4.aux" 1402581679 3534 0cf952b66f1b8821036e48f7df49b76c ""
+  "sc4.tex" 1402581665 19201 73355dcc4b64586a507179005c951cd6 ""
   (generated)
   "sc4.aux"
   "sc4.log"

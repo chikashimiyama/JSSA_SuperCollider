@@ -1,4 +1,4 @@
-PWD /Users/chikashi/Works/Event/2014/jssa_sc/sc4
+PWD /Users/chikashi/Documents/JSSA_SuperCollider/sc4
 INPUT /usr/local/texlive/2013/texmf.cnf
 INPUT /usr/local/texlive/2013/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2013/texmf.cnf
@@ -121,10 +121,10 @@ INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/ptex/jis/jis.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/ptex/standard/tgoth10.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/ptex/jis/jisg.tfm
 OUTPUT sc4.dvi
+INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
 INPUT comparison.pdf
 INPUT comparison.pdf
 INPUT feedback.pdf
