@@ -105,6 +105,8 @@ INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/ptex/standard/tgoth10.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/ptex/jis/jisg.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm
+INPUT setting.pdf
+INPUT setting.pdf
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/ptex/standard/tmin10.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/ptex/jis/jis.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
@@ -129,8 +131,9 @@ INPUT comparison.pdf
 INPUT comparison.pdf
 INPUT feedback.pdf
 INPUT feedback.pdf
+INPUT pingpong.pdf
+INPUT pingpong.pdf
+INPUT multitap.pdf
+INPUT multitap.pdf
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm
-INPUT /usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1phv.fd
-INPUT /usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1phv.fd
-INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/helvetic/phvr7t.tfm
 INPUT sc4.aux

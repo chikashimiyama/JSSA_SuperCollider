@@ -1,12 +1,11 @@
 # Fdb version 3
-["dvipdf"] 1402581679 "sc4.dvi" "sc4.pdf" "sc4" 1402581681
-  "sc4.dvi" 1402581679 49428 063e9d76496a1e1f7a9c93d1e4c2d1c2 "latex"
+["dvipdf"] 1403030813 "sc4.dvi" "sc4.pdf" "sc4" 1403030814
+  "sc4.dvi" 1403030813 56668 93d6a0d31dda84a4360b9bfcc0bafd19 "latex"
   (generated)
   "sc4.pdf"
-["latex"] 1402581678 "sc4.tex" "sc4.dvi" "sc4" 1402581681
+["latex"] 1403030812 "sc4.tex" "sc4.dvi" "sc4" 1403030814
   "/usr/local/texlive/2013/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
-  "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/helvetic/phvr7t.tfm" 1136768653 2520 53e01eef820ca829e42c1333c3fd02b9 ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768653 2172 fd0c924230362ff848a33632ed45dc23 ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm" 1136768653 2124 2601a75482e9426d33db523edf23570a ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm" 1136768653 2288 f478fc8fed18759effb59f3dad7f3084 ""
@@ -47,7 +46,6 @@
   "/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/omlptm.fd" 1137110629 577 008ea4bacb8ccf8c2a39dc94e000ef1f ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/omsptm.fd" 1137110629 576 95c2c0baea9c719a4be29a3d4122498b ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1pcr.fd" 1137110629 985 1ed784d7bfe47179f3550d2303b073f8 ""
-  "/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1phv.fd" 1137110629 1684 0ac4554419e828cf2c810306539da167 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1ptm.fd" 1137110629 961 15056f4a61917ceed3a44e4ac11fcc52 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/t1ptm.fd" 1137110629 774 61d7da1e9f9e74989b196d147e623736 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ts1ptm.fd" 1137110629 619 96f56dc5d1ef1fe1121f1cfeec70ee0c ""
@@ -62,12 +60,15 @@
   "/usr/local/texlive/2013/texmf.cnf" 1369923207 577 cbc827f6294276973a1952e86e8ad73a ""
   "color.sty" 1373098827 6174 3ef39bcefa13ddd2e73da0e261cdd05a ""
   "comparison.pdf" 1402520072 291814 0d715e565eb6a448a452e33be9a9ecbe ""
-  "feedback.pdf" 1402519732 233255 063bf1549b77f9f331b1075d4c820801 ""
+  "feedback.pdf" 1403024552 225252 5e7a76bdea7d39b247dd4aa45e3d7b8e ""
   "jlisting.sty" 1370277287 6230 9fa8fe97d5afbd5a433990256cc4d5a3 ""
   "jssa.sty" 1342522678 4466 0fcec90f93d9013a18b2105cdbafac94 ""
   "mediabb.sty" 1349314587 3255 45a4677a69a70933c927944771bd341e ""
-  "sc4.aux" 1402581679 3534 0cf952b66f1b8821036e48f7df49b76c ""
-  "sc4.tex" 1402581665 19201 73355dcc4b64586a507179005c951cd6 ""
+  "multitap.pdf" 1402655432 225580 b5de90602e805e24f0bedc978a582a67 ""
+  "pingpong.pdf" 1402654294 204696 a21a74916b36ab6338a9ff7bb1a638c2 ""
+  "sc4.aux" 1403030813 4155 d791b9912e3ff69165163c84a2d75d5b ""
+  "sc4.tex" 1403030810 23118 f1f69026a3ffad192da9a0f3168d8220 ""
+  "setting.pdf" 1402664885 64458 598eb43317083a820d3edd671bee8648 ""
   (generated)
   "sc4.aux"
   "sc4.log"

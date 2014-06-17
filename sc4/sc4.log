@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.1415926-p3.4-110825-2.6 (utf8.euc) (TeX Live 2013) (format=platex 2014.6.11)  12 JUN 2014 16:01
+This is e-pTeX, Version 3.1415926-p3.4-110825-2.6 (utf8.euc) (TeX Live 2013) (format=platex 2014.6.11)  17 JUN 2014 20:46
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -297,37 +297,39 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 9.60999pt on input line 95.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 95.
+File: setting.pdf Graphic file (type pdf)
+<setting.pdf>
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 104.
+(Font)              scaled to size 8.64899pt on input line 116.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 104.
+(Font)              scaled to size 8.64899pt on input line 116.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 104.
+(Font)              scaled to size 8.64899pt on input line 116.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 104.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 104.
+(Font)              scaled to size 8.64899pt on input line 116.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 116.
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+ (/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 105.
+(Font)              scaled to size 6.72699pt on input line 117.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 105.
+(Font)              scaled to size 6.72699pt on input line 117.
 LaTeX Font Info:    Font shape `JT1/mc/m/it' in size <8> not available
-(Font)              Font shape `JT1/mc/m/n' tried instead on input line 122.
+(Font)              Font shape `JT1/mc/m/n' tried instead on input line 137.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 7.68799pt on input line 122.
+(Font)              scaled to size 7.68799pt on input line 137.
 LaTeX Font Info:    Font shape `JY1/mc/m/it' in size <8> not available
-(Font)              Font shape `JY1/mc/m/n' tried instead on input line 122.
+(Font)              Font shape `JY1/mc/m/n' tried instead on input line 137.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 7.68799pt on input line 122.
+(Font)              scaled to size 7.68799pt on input line 137.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 124.
+(Font)              scaled to size 4.805pt on input line 138.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 7.68799pt on input line 146.
+(Font)              scaled to size 7.68799pt on input line 144.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 7.68799pt on input line 146.
+(Font)              scaled to size 7.68799pt on input line 144.
 
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
@@ -338,16 +340,16 @@ Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
 ]
 LaTeX Font Info:    Font shape `JT1/mc/m/it' in size <10> not available
-(Font)              Font shape `JT1/mc/m/n' tried instead on input line 149.
+(Font)              Font shape `JT1/mc/m/n' tried instead on input line 164.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 149.
+(Font)              scaled to size 9.60999pt on input line 164.
 LaTeX Font Info:    Font shape `JY1/mc/m/it' in size <10> not available
-(Font)              Font shape `JY1/mc/m/n' tried instead on input line 149.
+(Font)              Font shape `JY1/mc/m/n' tried instead on input line 164.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 149.
+(Font)              scaled to size 9.60999pt on input line 164.
 File: comparison.pdf Graphic file (type pdf)
  <comparison.pdf>
-Underfull \vbox (badness 7186) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
@@ -356,51 +358,50 @@ Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 [4]
 File: feedback.pdf Graphic file (type pdf)
  <feedback.pdf>
-
-LaTeX Warning: Reference `code:pinpong' on page 5 undefined on input line 237.
-
-
-Underfull \vbox (badness 5460) has occurred while \output is active []
-
-
+File: pingpong.pdf Graphic file (type pdf)
+ <pingpong.pdf>
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
 
 [5]
+File: multitap.pdf Graphic file (type pdf)
+ <multitap.pdf>
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 361--362
-[][]\OT1/ptm/m/it/10 SuperCollider\OT1/ptm/m/n/10 , $\OT1/pcr/m/n/10 http : / /
- supercollider .
- []
-
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 365.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1phv.fd
-File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
-)
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
 
 [6]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 401--402
+[][]\OT1/ptm/m/it/10 SuperCollider\OT1/ptm/m/n/10 , $\OT1/pcr/m/n/10 http : / /
+ supercollider .
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
 
-[7
+[7]
+Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
-] (./sc4.aux)
 
-LaTeX Warning: There were undefined references.
+[8
 
- ) 
+] (./sc4.aux) ) 
 Here is how much of TeX's memory you used:
- 3199 strings out of 494008
- 42523 string characters out of 6154472
- 322517 words of memory out of 5000000
- 6615 multiletter control sequences out of 15000+600000
- 21516 words of font info for 84 fonts, out of 8000000 for 9000
+ 3155 strings out of 494008
+ 41882 string characters out of 6154472
+ 274566 words of memory out of 5000000
+ 6572 multiletter control sequences out of 15000+600000
+ 20910 words of font info for 83 fonts, out of 8000000 for 9000
  750 hyphenation exceptions out of 8191
- 33i,15n,34p,19960b,1710s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 27i,15n,34p,14719b,1043s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sc4.dvi (5 pages, 49428 bytes).
+Output written on sc4.dvi (6 pages, 56668 bytes).
