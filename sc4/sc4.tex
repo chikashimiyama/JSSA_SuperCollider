@@ -111,7 +111,7 @@ SuperCollider(SC) is a realtime programming environment for audio synthesis. Thi
 \begin{figure}
 
 \end{figure}
-前回までは、SCを用いて音を生成する方法を学習してきたが、今回はマイクからの入力音をリアルタイムに加工する方法に焦点をあて、リング・モジュレーション、ディストーション、ピッチ・シフター、ディレイ、リバーブなどのエフェクトの作成をオムニバス的に紹介していく。ハウリングを避けるために、本稿のプログラムを実行する際には、ヘッドフォンなどを着用すること。また、OS側の設定で必ずマイクがオーディオの入力機器に選択されていることを事前に確認すること。Macの場合は、図\ref{fig:internal_mic}のように、「環境設定」パネルの「サウンド」で内蔵マイクをOSのサウンド入力装置として設定し、SCサーバーの起動時にリスト\ref{code:device_list}のように、内蔵マイク入力(Built-in Microphone)がリストの最初に列挙されているのを確認する。
+前回までは、SCを用いて音を生成する方法を学習してきたが、今回はマイクからの入力音をリアルタイムに加工する方法に焦点をあて、リング・モジュレーション、ディストーション、ピッチ・シフター、ディレイ、リバーブなどのエフェクトの作成をオムニバス的に紹介していく。ハウリングを避けるために、本稿のプログラムを実行する際には、ヘッドフォンなどを着用すること。また、OS側の設定で必ずマイクがオーディオ入力機器に選択されていることを事前に確認すること。Macの場合は、図\ref{fig:internal_mic}のように、「環境設定」パネルの「サウンド」で内蔵マイクをOSのサウンド入力装置として設定し、SCサーバーの起動時にリスト\ref{code:device_list}のように、内蔵マイク入力(Built-in Microphone)がリストの最初に列挙されているのを確認する。
 
 \begin{lstlisting}[caption=入出力デバイスのリスト,label=code:device_list]
 Number of Devices: 3
@@ -121,7 +121,7 @@ Number of Devices: 3
 \end{lstlisting}
 
 \section{マイクからの入力音を得るには}
-マイクからの入力をSCで得るには、リスト\ref{code:mic_input}のように{\bf SoundIn}というUgenを用いる。このプログラムでは単純にマイクからの音声をオーディオ出力装置に送っている。プログラムを実行すると、内蔵マイクに拾われた音がそのままヘッドフォンから聞こえてくる。
+マイクからの入力をSCで得るには、リスト\ref{code:mic_input}のように{\bf SoundIn}というUGenを用いる。このプログラムでは単純にマイクからの音声をオーディオ出力装置に送っている。プログラムを実行すると、内蔵マイクに拾われた音がそのままヘッドフォンから聞こえてくる。
 
 \begin{lstlisting}[caption=マイク入力,label=code:mic_input]
 {
@@ -140,7 +140,7 @@ Number of Devices: 3
 \end{itembox}
 
 \section{リング・モジュレーション}
-まず初めに、単純なエフェクトの一例として、リング・モジュレーションをプログラムする。リング・モジュレーションは原音の周波数成分の周囲にサイドバンドと呼ばれる周波数成分を作り出し、音色を変化させるもので、リスト\ref{code:rm}のように、SoundInからの入力音にサイン波を掛けあわせてプログラムする事ができる。
+まず初めに、単純なエフェクトの一例として、リング・モジュレーションをプログラムする。リング・モジュレーションは原音の周波数成分の周囲にサイドバンドと呼ばれる周波数成分を作り出して入力音の音色を変化させるもので、リスト\ref{code:rm}のように、SoundInからの入力音にサイン波を掛けあわせてプログラムする事ができる。
 
 \begin{lstlisting}[caption=リング・モジュレーション,label=code:rm]
 {
@@ -173,7 +173,7 @@ Number of Devices: 3
 \end{figure}
 
 \section{ピッチ・シフター}
-入力音のピッチを自在に変化させるピッチ・シフターは{\bf PitchShift}というUgenを用いれば簡単にプログラム可能である。PitchShiftはごく短いバッファに入力音を録音し、それを{\it pitchRatio}パラメータで指定された速度で再生することにより入力音の音程を変化させている。リスト\ref{code:ps}では、このパラメータを0.5に設定しているため、原音が半分の速度での再生される、このため原音は1オクターブ低くシフトされる。
+入力音のピッチを自在に変化させるピッチ・シフターは{\bf PitchShift}というUGenを用いれば簡単にプログラム可能である。PitchShiftはごく短いバッファに入力音を録音し、それを{\it pitchRatio}パラメータで指定された速度で再生することにより入力音の音程を変化させている。リスト\ref{code:ps}では、このパラメータを0.5に設定しているため、原音が半分の速度での再生される、このため原音を1オクターブ低くシフトされた音が作られる。
 
 \begin{lstlisting}[caption=ピッチシフター, label=code:ps]
 {
@@ -191,16 +191,16 @@ Number of Devices: 3
 }.play
 \end{lstlisting}
 
-.midicpsは、MIDIノートナンバーから周波数を出力させるメソッドであり。「0.midicps」を実行すると、MIDIノートナンバー「0」の周波数を得られる。MIDIノートナンバー「0」より長三度高い、つまり半音階で4高いMIDIノートナンバー「4」と、短三度低い、つまり半音階で3低い、ノートナンバー「-3」の周波数をそれぞれもとめ、それをノートナンバー「0」の周波数で除算することで、個々のノートナンバー間の周波数比を得られる、これを{\it pitchRatio}の値としてPitchShift.arに与える事で、入力音より短三度高い音と長三度低い音を作り、ピッチ・シフターを用いた長三和音を実現する事ができる。
+.midicpsは、MIDIノートナンバーを周波数に変換するメソッドであり。「0.midicps」を実行すると、MIDIノートナンバー「0」の周波数を得られる。MIDIノートナンバー「0」より長三度高い、つまり半音階で4高いMIDIノートナンバー「4」と、短三度低い、つまり半音階で3低い、ノートナンバー「-3」の周波数をそれぞれもとめ、それをノートナンバー「0」の周波数で除算することで、ノートナンバー「4」と「-3」と「0」間の周波数比、つまりどれだけ速く、あるいは遅く入力音を再生すれば、その音程が得られるかが数値として得る事ができる。これを{\it pitchRatio}の値としてPitchShift.arに与える事で、入力音より短三度高い音と長三度低い音を作り、ピッチ・シフターを用いた長三和音を実現する事ができる。
 
 \begin{itembox}[l]{PitchShift}
 {\footnotesize 
-ピッチシフトを行うUgen。音程はpitchRatioで指定する。dispersionのパラメータを用いることで、音程のランダマイズなども可能。\\
+ピッチシフトを行うUGen。音程は{\it pitchRatio}で指定する。dispersionのパラメータを用いることで、音程のランダマイズなども可能。\\
 .ar({\it in}, {\it windowSize}, {\it pitchRatio}, {\it pitchDispersion}, {\it timeDispersion}, {\it mul}, {\it add}, )\\
 
 {\it in}$\cdots$入力信号\\
 {\it windowSize}$\cdots$ウインドウ・サイズ\\
-{\it pitchRatio} $\cdots$ピッチ・レシオ。シフト後の音程を入力音に対する割合で指定。\\
+{\it pitchRatio} $\cdots$ピッチ・レシオ。再生速度。\\
 {\it pitchDispersion} $\cdots$ピッチ分散度\\
 {\it timeDispersion} $\cdots$時間分散度\\
 }
@@ -211,7 +211,7 @@ Number of Devices: 3
 
 \subsection{シンプルなディレイ}
 
-遅延効果をSCで用いるには{\bf DelayN}というUgenを使用する。このUgenの第2、第3引数はそれぞれ、最大ディレイ・タイムとディレイ・タイムで、最大ディレイ・タイムの値を元にSCはディレイ用のバッファを用意し、それを利用してディレイ・タイムで指定された時間だけ入力音を遅延させて出力する。最大ディレイ・タイムを超えたディレイ・タイムを設定した場合、ディレイ・タイムは最大ディレイ・タイムにクリップされる(リスト\ref{code:delay})。
+遅延効果をSCで用いるには{\bf DelayN}というUGenを使用する。このUGenの第2、第3引数はそれぞれ、最大ディレイ・タイムとディレイ・タイムで、最大ディレイ・タイムの値を元にSCはディレイ用のバッファを用意し、それを利用してディレイ・タイムで指定された時間だけ入力音を遅延させて出力する。最大ディレイ・タイムを超えたディレイ・タイムを設定した場合、ディレイ・タイムは最大ディレイ・タイムにクリップされる(リスト\ref{code:delay})。
 \begin{lstlisting}[caption=ディレイ, label=code:delay]
 {
 	DelayN.ar(SoundIn.ar([0,1]), 0.5, 0.5)
@@ -224,7 +224,7 @@ Number of Devices: 3
 	.ar({\it in}, {\it maxdelaytime}, {\it delaytime}, {\it mul}, {\it add})\\
 	{\it in}$\cdots$入力信号。\\
 	{\it maxdelaytime}$\cdots$最大ディレイ・タイム。ディレイ用のバッファの確保に使用する。\\
-	{\it delaytime} $\cdots$ディレイ・タイム。
+	{\it delaytime} $\cdots$ディレイ・タイム。最大ディレイ・タイムより大きい値を指定した場合、最大ディレイ・タイムにクリップされる。
 	}
 \end{itembox}
 
@@ -237,7 +237,7 @@ Number of Devices: 3
 	\label{fig:feedback}
 \end{figure}
 
-遅延させた信号を振幅を弱め、もう一度Delay.arに入力することによって、入力音が減衰しながらも何度も繰り返される、やまびこのようなフィードバック・ディレイが実現できる（図\ref{fig:feedback})。このようにフィードバックを実現するには、リスト\ref{code:feedback}のように{\bf LocalIn}と{\bf LocalOut}というUgenを用いる。リストでは、4行目でDelayNによる0.5秒の遅延処理と「* 0.5」による振幅の減衰が施された信号をLocalOutに送り、それが2行目のLocalInによって取り出され、原音と加算されている。LocalOutの引数としてオーディオ信号のArrayを渡す事で、複数のチャンネルをLocalOutに送る事も可能であり。複数のチャンネルをLocalOutに送った場合は、2行目のように、そのチャンネル数をLocalInの第1引数として指定する。
+遅延させた信号を振幅を弱め、もう一度Delay.arに入力することによって、入力音が減衰しながらも何度も繰り返される、やまびこのようなエフェクト、フィードバック・ディレイが実現できる（図\ref{fig:feedback})。このようなフィードバック・ディレイを実現するには、リスト\ref{code:feedback}のように{\bf LocalIn}と{\bf LocalOut}というUGenを用いる。リストでは、4行目でDelayNによる0.5秒の遅延処理と「* 0.5」による振幅の減衰が施された信号をLocalOutに送り、それが2行目のLocalInによって取り出され、原音と加算されている。LocalOutの引数としてオーディオ信号のArrayを渡す事で、複数のチャンネルをLocalOutに送る事も可能であり。複数のチャンネルをLocalOutに送った場合は、2行目のように、そのチャンネル数(= 2)をLocalInの第1引数として指定する。
 
 \begin{lstlisting}[caption=フィードバック・ディレイ, label=code:feedback]
 {
@@ -297,11 +297,11 @@ Number of Devices: 3
 	\begin{center}
 		\includegraphics[scale=0.7]{multitap.pdf}
 	\end{center}
-	\label{fig:multitap}
 	\caption{マルチタップ・ディレイ}
+	\label{fig:multitap}
 \end{figure}
 
-ここでは5つの要素からなるArrayが与えられたため、DelayNが5つ作られ、それぞれに異なった最大ディレイ・タイム及びディレイ・タイムが指定される。この全てのDelayNからの出力は5つの要素を持つArrayとして4行目で変数にdに格納されている。そして、5行目で{\bf Mix}というUgenを使って、Array内の全てをミックスしている。2行目の変数tを変更する事で、リズムを保持したまま、テンポだけを変える事が可能である(図\ref{fig:multitap})。
+ここでは5つの要素からなるArrayが与えられたため、DelayNが5つ作られ、それぞれに異なった最大ディレイ・タイム及びディレイ・タイムが指定される。この全てのDelayNからの出力は5つの要素を持つArrayとして4行目で変数にdに格納されている。そして、5行目で{\bf Mix}というUGenを使って、Array内の全てをミックスしている。2行目の変数tを変更する事で、リズムを保持したまま、テンポだけを変える事が可能である。
 
 
 \begin{itembox}[l]{Mix}
@@ -313,7 +313,7 @@ Number of Devices: 3
 \end{itembox}
 
 \section{リバーブ}
-残響効果を入力音に加えるには、以下のようにFreeVerbというUgenを利用するのが最も簡単である。
+残響効果を入力音に加えるには、以下のようにFreeVerbというUGenを利用するのが最も簡単である。
 
 \begin{lstlisting}[caption=リバーブ, label=code:reverb]
 {
@@ -323,7 +323,7 @@ Number of Devices: 3
 
 \begin{itembox}[l]{FreeVerb}
 {\footnotesize 
-原音にリバーブ（残響効果）を付加するUgen\\
+原音にリバーブ（残響効果）を付加するUGen\\
 .ar({\it in}, {\it mix}, {\it room}, {\it damp}, {\it mul}, {\it add})\\
 {\it in}$\cdots$入力信号\\
 {\it mix}$\cdots$原音と加工音のバランス、1で加工音のみ、0.原音のみ\\

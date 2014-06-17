@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.1415926-p3.4-110825-2.6 (utf8.euc) (TeX Live 2013) (format=platex 2014.6.11)  17 JUN 2014 20:46
+This is e-pTeX, Version 3.1415926-p3.4-110825-2.6 (utf8.euc) (TeX Live 2013) (format=platex 2014.6.11)  17 JUN 2014 21:12
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -398,10 +398,10 @@ Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 Here is how much of TeX's memory you used:
  3155 strings out of 494008
  41882 string characters out of 6154472
- 274566 words of memory out of 5000000
+ 274624 words of memory out of 5000000
  6572 multiletter control sequences out of 15000+600000
  20910 words of font info for 83 fonts, out of 8000000 for 9000
  750 hyphenation exceptions out of 8191
  27i,15n,34p,14719b,1043s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sc4.dvi (6 pages, 56668 bytes).
+Output written on sc4.dvi (6 pages, 57064 bytes).
