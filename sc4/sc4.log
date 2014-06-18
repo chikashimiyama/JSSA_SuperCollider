@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.1415926-p3.4-110825-2.6 (utf8.euc) (TeX Live 2013) (format=platex 2014.6.11)  17 JUN 2014 21:12
+This is e-pTeX, Version 3.1415926-p3.4-110825-2.6 (utf8.euc) (TeX Live 2013) (format=platex 2014.6.11)  18 JUN 2014 11:03
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -326,10 +326,13 @@ LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
 (Font)              scaled to size 7.68799pt on input line 137.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
 (Font)              scaled to size 4.805pt on input line 138.
+
+Underfull \vbox (badness 4378) has occurred while \output is active []
+
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 7.68799pt on input line 144.
+(Font)              scaled to size 7.68799pt on input line 142.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 7.68799pt on input line 144.
+(Font)              scaled to size 7.68799pt on input line 142.
 
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
@@ -340,18 +343,15 @@ Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
 ]
 LaTeX Font Info:    Font shape `JT1/mc/m/it' in size <10> not available
-(Font)              Font shape `JT1/mc/m/n' tried instead on input line 164.
+(Font)              Font shape `JT1/mc/m/n' tried instead on input line 166.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 164.
+(Font)              scaled to size 9.60999pt on input line 166.
 LaTeX Font Info:    Font shape `JY1/mc/m/it' in size <10> not available
-(Font)              Font shape `JY1/mc/m/n' tried instead on input line 164.
+(Font)              Font shape `JY1/mc/m/n' tried instead on input line 166.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 164.
+(Font)              scaled to size 9.60999pt on input line 166.
 File: comparison.pdf Graphic file (type pdf)
  <comparison.pdf>
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
 
@@ -366,9 +366,6 @@ Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 [5]
 File: multitap.pdf Graphic file (type pdf)
  <multitap.pdf>
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
 
@@ -376,13 +373,10 @@ Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 401--402
+Underfull \hbox (badness 10000) in paragraph at lines 406--407
 [][]\OT1/ptm/m/it/10 SuperCollider\OT1/ptm/m/n/10 , $\OT1/pcr/m/n/10 http : / /
  supercollider .
  []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
@@ -398,10 +392,10 @@ Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 Here is how much of TeX's memory you used:
  3155 strings out of 494008
  41882 string characters out of 6154472
- 274624 words of memory out of 5000000
+ 272195 words of memory out of 5000000
  6572 multiletter control sequences out of 15000+600000
  20910 words of font info for 83 fonts, out of 8000000 for 9000
  750 hyphenation exceptions out of 8191
  27i,15n,34p,14719b,1043s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sc4.dvi (6 pages, 57064 bytes).
+Output written on sc4.dvi (6 pages, 60084 bytes).
