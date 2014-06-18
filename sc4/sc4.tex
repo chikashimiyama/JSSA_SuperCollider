@@ -134,7 +134,7 @@ Number of Devices: 3
 \begin{itembox}[l]{SoundIn}
 {\footnotesize 
 コンピュータのマイクやサウンドカードからの音声入力を得る\\
-.ar({\it bus}, {\it mul}, {\it add})\\
+.ar({\it bus}, {\it mul}, {\it add})\\\\
 {\it bus}$\cdots$入力チャンネル番号。Arrayを与えることで、複数のチャンネルを同時に取得可能\\
 }
 \end{itembox}
@@ -199,8 +199,7 @@ Number of Devices: 3
 \begin{itembox}[l]{PitchShift}
 {\footnotesize 
 ピッチシフトを行うUGen。音程は{\it pitchRatio}で指定する。dispersionのパラメータを用いることで、音程のランダマイズなども可能。\\
-.ar({\it in}, {\it windowSize}, {\it pitchRatio}, {\it pitchDispersion}, {\it timeDispersion}, {\it mul}, {\it add}, )\\
-
+.ar({\it in}, {\it windowSize}, {\it pitchRatio}, {\it pitchDispersion}, {\it timeDispersion}, {\it mul}, {\it add})\\\\
 {\it in}$\cdots$入力信号\\
 {\it windowSize}$\cdots$ウインドウ・サイズ\\
 {\it pitchRatio} $\cdots$ピッチ・レシオ。再生速度\\
@@ -225,7 +224,7 @@ Number of Devices: 3
 \begin{itembox}[l]{DelayN}
 	{\footnotesize 
 	入力音を{\it delaytime}で指定した時間だけ遅延させる。\\
-	.ar({\it in}, {\it maxdelaytime}, {\it delaytime}, {\it mul}, {\it add})\\
+	.ar({\it in}, {\it maxdelaytime}, {\it delaytime}, {\it mul}, {\it add})\\\\
 	{\it in}$\cdots$入力信号。\\
 	{\it maxdelaytime}$\cdots$最大ディレイ・タイム。ディレイ用のバッファの確保に使用する。\\
 	{\it delaytime} $\cdots$ディレイ・タイム。最大ディレイ・タイムより大きい値を指定した場合、最大ディレイ・タイムにクリップされる。
@@ -255,7 +254,7 @@ Number of Devices: 3
 \begin{itembox}[l]{LocalIn}
 	{\footnotesize 
 	LocalOutにより内部バスに送られた信号を取り出す\\
-	.ar({\it numChannels}, {\it default})\\
+	.ar({\it numChannels}, {\it default})\\\\
 	{\it numChannels}$\cdots$出力するチャンネル数\\
 	{\it default}$\cdots$LocalOutからの信号が到達する前に出力されるデフォルト値\\
 	}
@@ -264,7 +263,7 @@ Number of Devices: 3
 \begin{itembox}[l]{LocalOut}
 	{\footnotesize 
 	引数で与えられた信号を内部バスに送る。\\
-	.ar({\it channelArray})\\
+	.ar({\it channelArray})\\\\
 	{\it channelArray}$\cdots$入力信号。複数のチャンネルを内部バスに送る場合はArrayを使う\\
 	}
 \end{itembox}
@@ -330,7 +329,7 @@ Number of Devices: 3
 \begin{itembox}[l]{Mix}
 {\footnotesize 
 {\it array}内の音声信号を全て加算する\\
-.ar({\it array})\\
+.ar({\it array})\\\\
 {\it array}$\cdots$音声信号のArray、全てのチャンネルが加算される\\
 }
 \end{itembox}
@@ -350,7 +349,7 @@ Number of Devices: 3
 \begin{itembox}[l]{FreeVerb}
 {\footnotesize 
 入力音にリバーブ（残響効果）を付加するUGen\\
-.ar({\it in}, {\it mix}, {\it room}, {\it damp}, {\it mul}, {\it add})\\
+.ar({\it in}, {\it mix}, {\it room}, {\it damp}, {\it mul}, {\it add})\\\\
 {\it in}$\cdots$入力信号\\
 {\it mix}$\cdots$入力音と加工音のバランス、1で加工音のみ、0で入力音のみ\\
 {\it room} $\cdots$ルームサイズ、1.0が最大、0.0が最小\\
@@ -359,7 +358,7 @@ Number of Devices: 3
 \end{itembox}
 
 \section{フィルタ}
-SCには様々なフィルタが予め用意されている。リスト\ref{code:highpass}では、入力音にハイパス・フィルタを施し、3000Hz以下の低周波成分を減衰させている。
+SCには様々なフィルタが予め用意されている。リスト\ref{code:highpass}では、入力音にハイパス・フィルタを施し、3000 Hz以下の低周波成分を減衰させている。
 
 \begin{lstlisting}[caption=ハイパス・フィルタ, label=code:highpass]
 {
@@ -368,7 +367,7 @@ SCには様々なフィルタが予め用意されている。リスト\ref{code
 }.play;
 \end{lstlisting}
 
-SCにはHPF(High Pass Filter) の他にもLPF(Low Pass Filter)、BPF(Band Pass Filter)、Moog、TwoPoleなど様々なフィルタが用意されている。「Filter」をヘルプで調べると、全てのフィルタのリストを見ることができる。
+SCにはHPF (High Pass Filter) の他にもLPF (Low Pass Filter)、BPF (Band Pass Filter)、Moog、TwoPoleなど様々なフィルタが用意されている。「Filter」をヘルプで調べると、全てのフィルタのリストを見ることができる。
 
 \begin{itembox}[l]{HPF}
 {\footnotesize 
