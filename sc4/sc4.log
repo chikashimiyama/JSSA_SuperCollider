@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.1415926-p3.4-110825-2.6 (utf8.euc) (TeX Live 2013) (format=platex 2014.6.11)  18 JUN 2014 11:03
+This is e-pTeX, Version 3.1415926-p3.4-110825-2.6 (utf8.euc) (TeX Live 2013) (format=platex 2014.6.11)  18 JUN 2014 20:58
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -352,28 +352,38 @@ LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
 (Font)              scaled to size 9.60999pt on input line 166.
 File: comparison.pdf Graphic file (type pdf)
  <comparison.pdf>
+Underfull \vbox (badness 1122) has occurred while \output is active []
+
+
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
 
 [4]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 File: feedback.pdf Graphic file (type pdf)
- <feedback.pdf>
-File: pingpong.pdf Graphic file (type pdf)
- <pingpong.pdf>
+
+<feedback.pdf>
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
 
 [5]
+File: pingpong.pdf Graphic file (type pdf)
+ <pingpong.pdf>
 File: multitap.pdf Graphic file (type pdf)
  <multitap.pdf>
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
 
 [6]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2096) has occurred while \output is active []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 406--407
+Overfull \vbox (5.97807pt too high) has occurred while \output is active []
+
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 431--432
 [][]\OT1/ptm/m/it/10 SuperCollider\OT1/ptm/m/n/10 , $\OT1/pcr/m/n/10 http : / /
  supercollider .
  []
@@ -382,20 +392,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 406--407
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
 
-[7]
-Overfull \vbox (5.97807pt too high) has occurred while \output is active []
-
-
 [8
 
 ] (./sc4.aux) ) 
 Here is how much of TeX's memory you used:
- 3155 strings out of 494008
- 41882 string characters out of 6154472
- 272195 words of memory out of 5000000
- 6572 multiletter control sequences out of 15000+600000
+ 3157 strings out of 494008
+ 41906 string characters out of 6154472
+ 273161 words of memory out of 5000000
+ 6574 multiletter control sequences out of 15000+600000
  20910 words of font info for 83 fonts, out of 8000000 for 9000
  750 hyphenation exceptions out of 8191
- 27i,15n,34p,14719b,1043s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 27i,15n,34p,14719b,1410s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sc4.dvi (6 pages, 60084 bytes).
+Output written on sc4.dvi (6 pages, 62380 bytes).

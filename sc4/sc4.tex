@@ -111,7 +111,7 @@ SuperCollider(SC) is a realtime programming environment for audio synthesis. Thi
 \begin{figure}
 
 \end{figure}
-前回までは、SCを用いて音を生成する方法を学習してきたが、今回はマイクからの入力音をリアルタイムに加工する方法に焦点をあて、リング・モジュレーション、ディストーション、ピッチ・シフター、ディレイ、リバーブなどのエフェクトの作成をオムニバス的に紹介していく。ハウリングを避けるために、本稿のプログラムを実行する際には、ヘッドフォンなどを着用すること。また、OS側の設定で必ずマイクがオーディオ入力機器に選択されていることを事前に確認すること。Macの場合は、図\ref{fig:internal_mic}のように、「環境設定」パネルの「サウンド」で内蔵マイクをOSのサウンド入力装置として設定し、SCサーバーの起動時にリスト\ref{code:device_list}のように、内蔵マイク入力(Built-in Microphone)がリストの最初に列挙されているのを確認する。
+前回までは、SCを用いて音を生成する方法を学習してきたが、今回はマイクからの入力音をリアルタイムに加工する方法に焦点をあて、リング・モジュレーション、ディストーション、ピッチ・シフター、ディレイ、リバーブなどのエフェクトの作成をオムニバス的に紹介していく。ハウリングを避けるために、本稿のプログラムを実行する際には、ヘッドフォンなどを着用すること。また、OS側の設定で必ずマイクをオーディオ入力機器に選択すること。Macの場合は、図\ref{fig:internal_mic}のように、「環境設定」パネルの「サウンド」で内蔵マイクをOSのサウンド入力装置として設定し、SCサーバーの起動時にリスト\ref{code:device_list}のように、内蔵マイク入力(Built-in Microphone)がリストの最初に列挙されているのを確認する。
 
 \begin{lstlisting}[caption=入出力デバイスのリスト,label=code:device_list]
 Number of Devices: 3
@@ -130,7 +130,7 @@ Number of Devices: 3
 }.play;
 \end{lstlisting}
 
-リストでは、SoundInの引数として「0」という数値が与えられているが、これは最初のオーディオ入力チャンネル、すなわちコンピュータのステレオ・マイクのLチャンネルを取得するという意味である。もし、「0」のかわりに[0,1]のようにArrayを与えると左右両方のチャンネルを取得することができる。また、3行目の[a, a]というArrayは単純にヘッドフォンの左右両方のチャンネルにマイクからの音を送るためのものである。このかわりにもし、「a」のみを書いた場合は、ヘッドフォンの左チャンネルのみにしか音が送られない。
+リストでは、SoundInの引数として「0」という数値が与えられているが、これは最初のオーディオ入力チャンネル、すなわちコンピュータのステレオ・マイクのLチャンネルを取得するという意味である。もし、「0」の代わりに[0, 1]のようにArrayを与えると左右両方のチャンネルを取得することができる。また、3行目の[a, a]というArrayはヘッドフォンの左右両チャンネルにマイクのLチャンネルからの音を送るためのものである。[a, a]の代わりに、もし「a」のみを書いた場合は、ヘッドフォンの左チャンネルのみにしか音が送られない。
 \begin{itembox}[l]{SoundIn}
 {\footnotesize 
 コンピュータのマイクやサウンドカードからの音声入力を得る\\
@@ -149,10 +149,10 @@ Number of Devices: 3
 }.play;
 \end{lstlisting}
 
-リストでは、MouseXを用いてカーソルの画面上の位置で正弦波の周波数をコントロールできるようにしている。
+リストでは、MouseXを用いてマウスカーソルの画面上の位置で正弦波の周波数をコントロールできるようにしている。プログラムを実行し、マイクに向かって喋りながら、左右にマウスカーソルを動かすと、リング・モジュレーションにより加工された声が変化していくのが聞き取れる。
 
 \section{ディストーション}
-オーディオ信号を増幅し歪ませる事で、豊かな倍音を含んだ太い音を得る、ロック・ギターでお馴染みのディストーションはSC3ではリスト
+オーディオ信号を増幅し歪ませる事で、豊かな倍音を含んだ音を得る、ロック・ギターでお馴染みのディストーションは、SC3ではリスト
 \ref{code:dst}のように.distortメソッドを用いてプログラムする事ができる。
 
 \begin{lstlisting}[caption=ディストーション, label=code:dst]
@@ -162,7 +162,7 @@ Number of Devices: 3
 }.play;
 \end{lstlisting}
 
-.distortを用いて確実に入力音を歪ませるには、ある程度の振幅のある入力音が必要となる。
+.distortを用いて確実に入力音を歪ませるには、ある程度の振幅のある入力信号が必要となる。
 このため、リストではSoundInの{\it mul}引数を100に設定して入力音を100倍に増幅し、.distortにより歪ませた後、「* 0.1」で聴取しやすいよう、レベルの調整をしている。
 .distortの他にも.softclipを使うと.distortと違った歪み方をさせることが可能である。図\ref{fig:comparison}は10倍に増幅した正弦波をそれぞれ.softclipと.distortで歪ませた時の波形の違いを図示したものである。
 
@@ -175,7 +175,7 @@ Number of Devices: 3
 \end{figure}
 
 \section{ピッチ・シフター}
-入力音のピッチを自在に変化させるピッチ・シフターは{\bf PitchShift}というUGenを用いれば簡単にプログラム可能である。PitchShiftはごく短いバッファに入力音を繰り返し録音し、それを{\it pitchRatio}パラメータで指定された速度で再生することにより入力音の音程を変化させている。リスト\ref{code:ps}では、このパラメータを0.5に設定しているため、入力音が半分の速度での再生される、このため入力音を1オクターブ低くシフトした音が作られる。
+入力音のピッチ（音高）を自在に変化させるピッチ・シフターは{\bf PitchShift}というUGenを用いれば簡単にプログラム可能である。PitchShiftはごく短いバッファに入力音を繰り返し録音し、それを{\it pitchRatio}パラメータで指定された速度で再生することにより入力音の音程を変化させている。リスト\ref{code:ps}では、このパラメータを0.5に設定しているため、入力音が半分の速度での再生される、このため入力音を1オクターブ低くシフトした音が得られる。
 
 \begin{lstlisting}[caption=ピッチ・シフター, label=code:ps]
 {
@@ -184,17 +184,17 @@ Number of Devices: 3
 }.play;
 \end{lstlisting}
 
-例えば、原音より短三度高い音と長三度低い音を付加してピッチ・シフターを利用した和音を作る事も可能である。このように音階上にピッチシフトを行う場合は、以前に学習した.midicpsを利用する。
+例えば、入力音より短三度高い音と長三度低い音を付加してピッチ・シフターを利用した三和音を作る事も可能である。このように音階上にピッチシフトを行う場合は、リスト\ref{code:ps_chord}のように以前に学習した「.midicps」を利用する。
 
 \begin{lstlisting}[caption=ピッチ・シフターによる和音, label=code:ps_chord]
 {
-	a = PitchShift.ar(SoundIn.ar([0,1]), pitchRatio: 3.midicps / 0.midicps);
-	a = PitchShift.ar(SoundIn.ar([0,1]), pitchRatio: -4.midicps / 0.midicps) + a;
+	a = PitchShift.ar(SoundIn.ar(0), pitchRatio: 3.midicps / 0.midicps);
+	a = PitchShift.ar(SoundIn.ar(0), pitchRatio: -4.midicps / 0.midicps) + a;
 	[a, a];
 }.play;
 \end{lstlisting}
 
-.midicpsは、MIDIノートナンバーを周波数に変換するメソッドであり。「0.midicps」を実行すると、MIDIノートナンバー「0」の周波数を得られる。MIDIノートナンバー「0」より長三度高い、つまり半音階で4高いMIDIノートナンバー「4」と、短三度低い、つまり半音階で3低い、ノートナンバー「-3」の周波数をそれぞれもとめ、それをノートナンバー「0」の周波数で除算することで、ノートナンバー「4」と「-3」と「0」間の周波数比、つまりどれだけ速く（あるいは遅く）入力音を再生すれば、その音程が得られるかが数値として得る事ができる。これを{\it pitchRatio}の値としてPitchShift.arに与える事で、入力音より短三度高い音と長三度低い音を作り、ピッチ・シフターを用いた長三和音を実現する事ができる。
+.midicpsは、MIDIノートナンバーを周波数に変換するメソッドであり。「0.midicps」を実行すると、MIDIノートナンバー「0」の周波数が得られる。また、MIDIノートナンバー「0」より短三度高い、つまり半音階で3高いMIDIノートナンバー「3」と、長三度低い、つまり半音階で4低い、ノートナンバー「-4」の周波数を.midicpsでそれぞれもとめ、それをノートナンバー「0」の周波数で除算することで、それぞれノートナンバー「4」と「0」、「-3」と「0」間の周波数比、つまりどれだけ速く（あるいは遅く）入力音を再生すれば、長三度高い、または短三度低い音程が得られるか、を数値として得る事ができる。これを{\it pitchRatio}の値としてPitchShiftに与える事で、入力音より短三度高い音と長三度低い音を作り、ピッチ・シフターを用いた長三和音を実現する事ができる。
 
 \begin{itembox}[l]{PitchShift}
 {\footnotesize 
@@ -241,16 +241,33 @@ Number of Devices: 3
 	\label{fig:feedback}
 \end{figure}
 
-遅延させた信号を振幅を弱め、もう一度Delay.arに入力することによって、入力音が減衰しながらも何度も繰り返される、やまびこのようなエフェクト、フィードバック・ディレイが実現できる（図\ref{fig:feedback})。このようなフィードバック・ディレイを実現するには、リスト\ref{code:feedback}のように{\bf LocalIn}と{\bf LocalOut}というUGenを用いる。リストでは、4行目でDelayNによる0.5秒の遅延処理と「* 0.5」による振幅の減衰が施された信号をLocalOutに送り、それが2行目のLocalInによって取り出され、原音と加算されている。LocalOutの引数としてオーディオ信号のArrayを渡す事で、複数のチャンネルをLocalOutに送る事も可能であり。複数のチャンネルをLocalOutに送った場合は、2行目のように、そのチャンネル数(= 2)をLocalInの第1引数として指定する。
+遅延させた信号を振幅を弱め、もう一度Delay.arに入力することによって、入力音を減衰させながら何度も繰り返す、やまびこのようなエフェクト、フィードバック・ディレイが実現できる（図\ref{fig:feedback})。このようなフィードバック・ディレイを実現するには、リスト\ref{code:feedback}のように{\bf LocalIn}と{\bf LocalOut}というUGenを用いる。リストでは、4行目でDelayNによる0.5秒の遅延処理と「* 0.5」による振幅の減衰が施された信号をLocalOutに送り、それが2行目のLocalInによって取り出され、入力音と加算されている。
 
 \begin{lstlisting}[caption=フィードバック・ディレイ, label=code:feedback]
 {
-	a = SoundIn.ar([0,1]) + LocalIn.ar(2);
+	a = SoundIn.ar(0) + LocalIn.ar(1);
 	d = DelayN.ar(a, 0.5, 0.5);
 	LocalOut.ar(d*0.5);
 	[d, d]
 }.play
 \end{lstlisting}
+
+\begin{itembox}[l]{LocalIn}
+	{\footnotesize 
+	LocalOutにより内部バスに送られた信号を取り出す\\
+	.ar({\it numChannels}, {\it default})\\
+	{\it numChannels}$\cdots$出力するチャンネル数\\
+	{\it default}$\cdots$LocalOutからの信号が到達する前に出力されるデフォルト値\\
+	}
+\end{itembox}
+
+\begin{itembox}[l]{LocalOut}
+	{\footnotesize 
+	引数で与えられた信号を内部バスに送る。\\
+	.ar({\it channelArray})\\
+	{\it channelArray}$\cdots$入力信号。複数のチャンネルを内部バスに送る場合はArrayを使う\\
+	}
+\end{itembox}
 
 \subsection{ピンポン・ディレイ}
 フィードバック・ディレイにアレンジを加え、各ディレイ音が左右のスピーカーから交互に聞こえる、ピンポン・ディレイを作る事もできる。
@@ -263,19 +280,21 @@ Number of Devices: 3
 	\label{fig:pingpong}
 \end{figure}
 
-左右のスピーカーに交互にディレイを送るには左右のスピーカー用にそれぞれ独立したフィードバック・ディレイを用意し、片方のスピーカーのフィードバック・ディレイに音を入力するタイミイングをもう片方に入力するタイミングとずらすことにより実現できる(図\ref{fig:pingpong})。
+左右のスピーカーに交互にディレイを送るには、左右のスピーカー用にそれぞれ独立したフィードバック・ディレイを用意し、片方のスピーカーのフィードバック・ディレイに音を入力するタイミングをもう片方に入力するタイミングより、ディレイ・タイムの半分(この例では0.25秒)ずらすことにより実現できる(図\ref{fig:pingpong})。
 
-リスト\ref{code:pp}は0.25秒ごとに左右のスピーカーから交互にディレイ音が聞こえるピンポン・ディレイのプログラム例である。3行目では、入力音に0.25秒の遅延と「* 0.8」により振幅を減衰を施し、それを変数dに代入している。また、4行目でLocalInを用いてLocalOutからの2チャンネルの信号を取得し、変数lに代入。5、6行目でLチャンネルを入力音(a[0])と、Rチャンネル(a[1])を0.25秒の遅延を伴った、dとミックスしている。それを、7、8行目で、それぞれ個別のDelayNに入力することによって、0.5秒さらに遅延させ、9行目でLocalOutに送り、フィードバックを生じさせている。10行目には[l,r+d]となっているため、左のスピーカーからはl音、つまり0.5、1.0、1.5、2.0...秒後にディレイが聞こえ、右のスピーカーかrとdの音のミックスしたrの音、つまり0.25、0.75、1.25、1.75...秒後にディレイが聞こえてくる。
+リスト\ref{code:pp}は0.25秒ごとに左右のスピーカーから交互にディレイ音が聞こえるピンポン・ディレイのプログラム例である。3行目では、入力音に0.25秒の遅延と「* 0.5」により振幅を減衰を施し、それを変数dに代入している。また、4行目でLocalInを用いて9行目のLocalOutからの2チャンネルの信号をArrayとして取得し、変数aに格納。5、6行目でそのLチャンネル(a[0])を入力音iと、Rチャンネル(a[1])を、0.25秒の遅延を伴ったdとミックスしている。それを、7、8行目で、それぞれ個別のDelayNに入力することによって、両チャンネルを0.5秒遅延させ、続く「* .5」で減衰させ、9行目でLocalOutに送り、フィードバックを生じさせている。
+
+10行目は[l,r+d]となっているため、左チャンネルからは変数lの音、つまり0.5、1.0、1.5、2.0..秒後のディレイが聞こえ、右のチャンネルからは、変数dとrの音のミックスした音、つまり0.25、0.75、1.25、1.75...秒後のディレイが聞こえてくる。
 
 \begin{lstlisting}[caption=ピンポン・ディレイ, label=code:pp]
 {
 	i = SoundIn.ar(0);
-	d = DelayN.ar(i, 0.25, 0.25) * 0.8;
+	d = DelayN.ar(i, 0.25, 0.25) * 0.5;
 	a = LocalIn.ar(2);
 	l = a[0] + i;
 	r = a[1] + d;
-	l = DelayN.ar(l, 0.5, 0.5) * 0.8; 
-	r = DelayN.ar(r, 0.5, 0.5) * 0.8;
+	l = DelayN.ar(l, 0.5, 0.5) * 0.5; 
+	r = DelayN.ar(r, 0.5, 0.5) * 0.5;
 	LocalOut.ar([l,r]);
 	[l,r+d]
 }.play
@@ -289,11 +308,12 @@ Number of Devices: 3
 	t = 0.1;
 	a = [1, 2, 4, 6, 7] * t;
 	d = DelayN.ar(SoundIn.ar(0), a, a);
-	[d, d];
+	m = Mix.ar(d);
+	[m, m];
 }.play
 \end{lstlisting}
 
-このリストで変数aはマルチタップ・ディレイのリズムパターンが定義されたArrayが格納されている。Arrayは[1, 2, 4, 6, 7]というリズムパターンに0.1が掛けられているので、その内容は[0.1, 0.2, 0.4, 0.6, 0.7]となる、このArrayを4、5行目のDelayNの最大ディレイ・タイムとディレイ・タイムにそれぞれ適応している。このように引数にArrayが与えられた場合、SCは自動的にDelayNを複製する(図\ref{fig:multitap})。
+このリストで変数aはマルチタップ・ディレイのリズムパターンが定義されたArrayが格納されている。Arrayは[1, 2, 4, 6, 7]というリズムパターンに0.1が掛けられているので、その内容は[0.1, 0.2, 0.4, 0.6, 0.7]となる、このArrayを4、5行目のDelayNの最大ディレイ・タイムとディレイ・タイムにそれぞれ適応している。このように引数にArrayが与えられた場合、SCは自動的にDelayNを複製する。
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -303,7 +323,9 @@ Number of Devices: 3
 	\label{fig:multitap}
 \end{figure}
 
-ここでは5つの要素からなるArrayが与えられたため、DelayNが5つ作られ、それぞれに異なった最大ディレイ・タイム及びディレイ・タイムが指定される。この全てのDelayNからの出力は5つの要素を持つArrayとして4、5行目でチャンネルごとに変数l、rに格納される。そして、6行目で{\bf Mix}というUGenを使って、Array内の全てをミックスしている。2行目の変数tを変更する事で、リズムを保持したまま、テンポだけを変える事が可能である。
+ここでは5つの要素からなるArrayが与えられたため、DelayNが5つ作られ、それぞれに異なった最大ディレイ・タイム及びディレイ・タイムが指定される。そして、入力音はArrayで指定されたように0.1秒、0.2秒、0.4秒、0.6秒、0.7秒遅延して出力される、これらはDelayNからオーディオ信号のArrayとして出力され、5行目で{\bf Mix}というUGenを使って、全ての要素をミックスしている(図\ref{fig:multitap})。
+
+また、このリストの変数tの値を変えると、マルチタップ・ディレイのリズム・パターンを変えずにテンポだけを変える事ができる。
 
 \begin{itembox}[l]{Mix}
 {\footnotesize 
@@ -320,16 +342,17 @@ Number of Devices: 3
 
 \begin{lstlisting}[caption=リバーブ, label=code:reverb]
 {
-	FreeVerb.ar(SoundIn.ar([0,1]), 1.0);
+	a = FreeVerb.ar(SoundIn.ar(0), 1.0);
+	[a, a];
 }.play
 \end{lstlisting}
 
 \begin{itembox}[l]{FreeVerb}
 {\footnotesize 
-原音にリバーブ（残響効果）を付加するUGen\\
+入力音にリバーブ（残響効果）を付加するUGen\\
 .ar({\it in}, {\it mix}, {\it room}, {\it damp}, {\it mul}, {\it add})\\
 {\it in}$\cdots$入力信号\\
-{\it mix}$\cdots$原音と加工音のバランス、1で加工音のみ、0で原音のみ\\
+{\it mix}$\cdots$入力音と加工音のバランス、1で加工音のみ、0で入力音のみ\\
 {\it room} $\cdots$ルームサイズ、1.0が最大、0.0が最小\\
 {\it damp} $\cdots$高周波数のダンプ。0から1の範囲で指定\\
 }
@@ -362,7 +385,7 @@ SCにはHPF(High Pass Filter) の他にもLPF(Low Pass Filter)、BPF(Band Pass F
 \begin{lstlisting}[caption=ワウワウ, label=code:wahwah]
 {
 	l = SinOsc.ar(5, 0, 1000, 1500);
-	a = BPF.ar(SoundIn.ar([0,1]), l, 0.5);
+	a = BPF.ar(SoundIn.ar(0), l, 0.5);
 	[a, a];
 }.play;
 \end{lstlisting}
@@ -381,21 +404,23 @@ BPFの三番目の引数はrq(reciprocal of Q)値であり、この値が少な�
 \end{itembox}
 
 \section{エフェクタをSynthDefとしての定義する}
-SC3はこれまでに制作してきたようなエフェクタを複数組み合わせ、SynthDefとして定義することも可能である。リスト\ref{code:combination}ではピッチ・シフター・ディレイ・リバーブを連結して、より複雑なエフェクトをプログラムし、それを「myEffect」というSynthDefとして定義している。
+SC3はこれまでに制作してきたようなエフェクタを複数組み合わせ、SynthDefとして定義することも可能である。リスト\ref{code:combination}ではピッチ・シフター、ディレイ、リバーブを連結して、より複雑なエフェクトをプログラムし、それを「myEffect」というSynthDefとして定義している。
 
-\begin{lstlisting}[caption=エフェクトの組み合わせ, label=code:combination]
+\begin{lstlisting}[caption=エフェクトのSynthDef, label=code:combination]
 SynthDef("myEffect",{
-	i = SoundIn.ar([0,1]);
+	i = SoundIn.ar(0);
 	i = PitchShift.ar(i, pitchRatio:0.5) + i;
 	i = DelayN.ar(i, 0.5, 0.5) + i;
 	i = FreeVerb.ar(i, 1.0) + i;
 	Out.ar(0, [i, i]);
 }).load;
-
-Synth("myEffect")
 \end{lstlisting}
 
-リストでは3から5行目にかけて、「+ i」が行末に書かれているが、これはエフェクトにより加工された音と、エフェクトへの入力音を足し、両方の音が聞こえるようにするためである。
+リストでは3から5行目にかけて、「+ i」が行末に書かれているが、これはエフェクトにより加工された音と、エフェクトへの入力音を足し、両方の音が聞こえるようにするためである。このSynthDefも前回同様に{\bf Synth}を用いて使用する(リスト\ref{code:execution})。
+
+\begin{lstlisting}[caption=エフェクトSynthDefの使用, label=code:execution]
+Synth("myEffect")
+\end{lstlisting}
 
 \section{まとめ}
 今回はSCによる様々なエフェクトのプログラミングを学習した。エフェクタは、さらにSCのバス(Bus)と言われる機能を利用して、エフェクタのSynthを複数繋ぐ、音を生成するSynthとエフェクタを定義したSynthを組み合わせて、自作シンセ音に各種エフェクトを
@@ -404,6 +429,8 @@ Synth("myEffect")
 \bibliographystyle{jplain}
 \begin{thebibliography}{citations}
   \bibitem{scsite} {\it SuperCollider}, \url{http://supercollider.sourceforge.net}(アクセス日 2014年6月10日)
+  \bibitem{scbook} Wilson, S., Cottle, D. and Collins, N. (eds), {\it The SuperCollider Book} The MIT Press, 2011
+
 \end{thebibliography}
 
 \section{著者プロフィール}
