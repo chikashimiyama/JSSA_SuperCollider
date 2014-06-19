@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.1415926-p3.4-110825-2.6 (utf8.euc) (TeX Live 2013) (format=platex 2014.6.11)  18 JUN 2014 22:26
+This is e-pTeX, Version 3.1415926-p3.4-110825-2.6 (utf8.euc) (TeX Live 2013) (format=platex 2014.6.11)  19 JUN 2014 02:15
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -369,6 +369,9 @@ File: pingpong.pdf Graphic file (type pdf)
  <pingpong.pdf>
 File: multitap.pdf Graphic file (type pdf)
  <multitap.pdf>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
 
@@ -376,14 +379,11 @@ Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 433--434
+Underfull \hbox (badness 10000) in paragraph at lines 432--433
 [][]\OT1/ptm/m/it/10 SuperCollider\OT1/ptm/m/n/10 , $\OT1/pcr/m/n/10 http : / /
  supercollider .
  []
@@ -396,10 +396,10 @@ Overfull \vbox (5.97807pt too high) has occurred while \output is active []
 Here is how much of TeX's memory you used:
  3157 strings out of 494008
  41906 string characters out of 6154472
- 272301 words of memory out of 5000000
+ 273317 words of memory out of 5000000
  6574 multiletter control sequences out of 15000+600000
  20910 words of font info for 83 fonts, out of 8000000 for 9000
  750 hyphenation exceptions out of 8191
- 27i,15n,34p,14719b,1043s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,15n,34p,14719b,1650s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sc4.dvi (6 pages, 63236 bytes).
+Output written on sc4.dvi (6 pages, 63344 bytes).

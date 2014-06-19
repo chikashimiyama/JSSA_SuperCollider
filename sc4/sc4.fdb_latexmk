@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1403123165 "sc4.dvi" "sc4.pdf" "sc4" 1403123166
-  "sc4.dvi" 1403123165 63236 0e68bec95c041bfd43224e9fa59323be "latex"
+["dvipdf"] 1403136955 "sc4.dvi" "sc4.pdf" "sc4" 1403136957
+  "sc4.dvi" 1403136955 63344 f23c0fe9901411bd933bc91d33de73b7 "latex"
   (generated)
   "sc4.pdf"
-["latex"] 1403123164 "sc4.tex" "sc4.dvi" "sc4" 1403123166
+["latex"] 1403136954 "sc4.tex" "sc4.dvi" "sc4" 1403136957
   "/usr/local/texlive/2013/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768653 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -66,8 +66,8 @@
   "mediabb.sty" 1349314587 3255 45a4677a69a70933c927944771bd341e ""
   "multitap.pdf" 1402655432 225580 b5de90602e805e24f0bedc978a582a67 ""
   "pingpong.pdf" 1402654294 204696 a21a74916b36ab6338a9ff7bb1a638c2 ""
-  "sc4.aux" 1403123165 4301 f3524458d18720def787f259c457e94f ""
-  "sc4.tex" 1403123161 25501 ca7aeb59e5d172c3cb8bfd5518e4876a ""
+  "sc4.aux" 1403136955 4293 3054ea60f452e0541629b8cae082236b ""
+  "sc4.tex" 1403136949 25648 d179af3161edf19f2816bde999a89598 ""
   "setting.pdf" 1402664885 64458 598eb43317083a820d3edd671bee8648 ""
   (generated)
   "sc4.aux"
